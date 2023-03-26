@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ci8rw51m7ulx7"]
+
+[ext_resource type="ArrayMesh" uid="uid://biodl8wquqe5x" path="res://Assets/LandDry.obj" id="1_yo3ng"]
+[ext_resource type="ArrayMesh" uid="uid://wxdv0p7g1g1y" path="res://Assets/LandWet.obj" id="2_a6vu4"]
+
+[node name="Meshes" type="Node3D"]
+
+[node name="LandDry" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_yo3ng")
+
+[node name="LandWet" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_a6vu4")

@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://ibg178lgd2k5"]
+
+[ext_resource type="PackedScene" uid="uid://bbrmeshppy4wm" path="res://Scenes/MainMenu.tscn" id="2_0md4k"]
+[ext_resource type="PackedScene" uid="uid://rexcyaqbknut" path="res://Assets/Farm.glb" id="2_hl2v3"]
+[ext_resource type="PackedScene" uid="uid://dqb73qyxg4vvg" path="res://Assets/Tree.glb" id="3_ukf84"]
+[ext_resource type="MeshLibrary" uid="uid://bps127pbcdpdk" path="res://Meshes/Meshes.meshlib" id="4_26tjf"]
+[ext_resource type="Script" path="res://Scripts/GridMap.gd" id="6_gauil"]
+
+[sub_resource type="Environment" id="Environment_dqbr1"]
+background_mode = 1
+background_color = Color(0.235294, 0.635294, 0.878431, 1)
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5fyn7"]
+albedo_color = Color(0.278431, 0.729412, 0.321569, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7olpq"]
+size = Vector3(20, 1, 20)
+
+[node name="Game" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 15, 20, 15)
+environment = SubResource("Environment_dqbr1")
+fov = 33.2
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.353553, 0.353553, 0, 0.707107, 0.707107, -0.5, -0.612372, 0.612372, 0, 0, 0)
+
+[node name="Control" parent="." instance=ExtResource("2_0md4k")]
+
+[node name="Farm" parent="." instance=ExtResource("2_hl2v3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25768, 0, -4.4827)
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Tree" parent="Node3D" instance=ExtResource("3_ukf84")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2377, -0.251731, -7.76326)
+
+[node name="Tree2" parent="Node3D" instance=ExtResource("3_ukf84")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.42758, 0, -8.31085)
+
+[node name="Tree3" parent="Node3D" instance=ExtResource("3_ukf84")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.90644, -0.526514, -3.31085)
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("4_26tjf")
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 65533, 3, 1, 65533, 3, 2, 65533, 3, 65535, 65533, 3)
+}
+script = ExtResource("6_gauil")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+size = Vector3(20, 1, 20)
+material = SubResource("StandardMaterial3D_5fyn7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CSGBox3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_7olpq")

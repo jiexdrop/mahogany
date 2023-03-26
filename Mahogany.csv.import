@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://d3vrq7faww6cr"
+
+[deps]
+
+files=["res://Mahogany.en.translation", "res://Mahogany.fr.translation"]
+
+source_file="res://Mahogany.csv"
+dest_files=["res://Mahogany.en.translation", "res://Mahogany.fr.translation"]
+
+[params]
+
+compress=true
+delimiter=0
